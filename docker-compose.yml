@@ -1,8 +1,10 @@
-server:
-    image: idocking/go-wkhtmltox:latest
-    command: ["./go-wkhtmltox", "run"]
-    ports:
-      - 8080:8080
-    volumes:
-      - ./templates:/app/templates
-      - ./app.conf:/app/app.conf
+version: '2'
+services:
+    wkhtmltox:
+        build: .
+        command: ["./go-wkhtmltox", "run"]
+        ports:
+          - 8080:8080
+        volumes:
+          - ./templates:/app/templates
+          - ./app.conf:/app/app.conf

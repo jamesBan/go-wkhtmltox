@@ -6,7 +6,7 @@ go-wkhtmltox
 ## Run at local
 
 ```bash
-> go get github.com/gogap/go-wkhtmltox
+> go get git@github.com:jamesBan/go-wkhtmltox.git
 > cd $GOPATH/src/github.com/gogap/go-wkhtmltox
 > go build
 > ./go-wkhtmltox run -c app.conf
@@ -15,8 +15,9 @@ go-wkhtmltox
 ## Run at docker
 
  ```bash
- docker pull idocking/go-wkhtmltox:latest
- docker run -it -d -p 8080:8080 idocking/go-wkhtmltox:latest ./go-wkhtmltox run
+ git clone git@github.com:jamesBan/go-wkhtmltox.git
+ go build -t wkhtmltox .
+ docker run -it -d -p 8080:8080 wkhtmltox:latest ./go-wkhtmltox run
  ```
 
 or
@@ -28,6 +29,38 @@ or
 > then you could access the 8080 port
 > in osx, you could get the docker ip by command `docker-machine ip`, 
 > and the access service by IP:8080
+
+
+
+## font
+
+字体文件位于 font.zip内，使用docker时会自动进行安装。
+
+增加新的字体，只需要将字体文件放入font.zip,让后重新build。
+
+
+
+## 全自动构建
+
+将Dockerfile文件内 ``#``注释去掉
+
+```shell
+docker build -t tagname .
+```
+
+or
+
+```shell
+docker-compose up -d
+```
+
+## go安装包
+
+由于众所周知的原因，上网不方便的同学。
+
+可以参考https://golangtc.com/t/56f3c175b09ecc66b9000181 进行安装
+
+
 
 ## Config
 
@@ -100,9 +133,18 @@ or
 		}
 	},
 	"converter":{
-		"uri": "https://www.bing.com"
+		"uri": "https://www.bing.com",
+         "format": "png",
+        "crop":{
+        }
 	},
-	"template": "render-data"
+	"template": "render-data",
+    "extend":{
+        "width": "400",
+        "height": "500",
+        "quality": "90"
+        
+    }
 }
 ```
 
