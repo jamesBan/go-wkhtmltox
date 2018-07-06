@@ -30,4 +30,6 @@ WORKDIR /app
 
 VOLUME /app/templates
 
-CMD ["./go-wkhtmltox"]
+#reference https://blog.phusion.nl/2015/01/20/docker-and-the-pid-1-zombie-reaping-problem/
+#CMD ["./go-wkhtmltox"] zombie
+CMD ["/bin/bash", "-c", "set -e && ./go-wkhtmltox run"]

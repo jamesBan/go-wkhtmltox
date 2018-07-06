@@ -17,7 +17,7 @@ go-wkhtmltox
  ```bash
  git clone git@github.com:jamesBan/go-wkhtmltox.git
  go build -t wkhtmltox .
- docker run -it -d -p 8080:8080 wkhtmltox:latest ./go-wkhtmltox run
+ docker run -it -d -p 8080:8080 wkhtmltox:latest
  ```
 
 or
